@@ -1,0 +1,43 @@
+<div class="container-hluid">
+  <div class="row no-gutters">
+    <div class="col-3 bg-primary ">
+      <h1>test</h1>
+      <h1>test</h1>
+    </div>
+    <div class="col-9">
+      <hr>
+      <% if user_signed_in? %> <%# この行を追加する %>
+        <%= link_to "サインアウト", destroy_user_session_path, method: :delete %>
+      <% end %>
+      <br>
+    <h1>会議室一覧</h1>
+    <div>
+        <%= link_to "新規登録", new_conferenceroom_path, class: "btn btn-primary" %>
+    </div>
+    <br>
+ ------------------------------
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">会議室名</th>
+          <th scope="col">収容人数</th>
+          <th scope="col">利用金額</th>
+          <th scope="col">使用可能時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @conferencerooms.each do |conferenceroom| %>
+          <tr>
+            <td><%= conferenceroom.conferenceroomname %></td>
+            <td><%= conferenceroom.people %></td>
+            <td><%= conferenceroom.price %></td>
+            <td><%= conferenceroom.starttime %> ~ <%= conferenceroom.endtime %></td>
+            <td><%= link_to "スケジュール", new_conferenceroom_schedule_path(conferenceroom), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    ---------------------------------
+    </div>
+  </div>
+</div>

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   :registrations => 'users/registrations'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'pages#home'
+  root 'conferencerooms#index'
+  
+  
   
   resources :conferencerooms, only: %i(new create index) do
   resources :users, only: %i(new create)
