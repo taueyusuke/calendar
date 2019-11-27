@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_200325) do
+ActiveRecord::Schema.define(version: 2019_11_27_165357) do
+
+  create_table "conferencerooms", force: :cascade do |t|
+    t.string "conferenceroomname", null: false
+    t.integer "people", null: false
+    t.integer "price", null: false
+    t.time "starttime", null: false
+    t.time "endtime", null: false
+    t.text "remarks"
+    t.integer "facility_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_conferencerooms_on_facility_id"
+  end
+
+  create_table "facilities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.datetime "starttime", null: false
+    t.datetime "endtime", null: false
+    t.string "title", null: false
+    t.text "content", null: false
+    t.integer "user_id", null: false
+    t.integer "conferenceroom_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conferenceroom_id"], name: "index_schedules_on_conferenceroom_id"
+    t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,7 +51,11 @@ ActiveRecord::Schema.define(version: 2019_11_26_200325) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "firstname", default: "", null: false
+    t.string "lastname", default: "", null: false
+    t.integer "facility_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["facility_id"], name: "index_users_on_facility_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
