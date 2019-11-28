@@ -20,6 +20,10 @@ class ConferenceroomsController < ApplicationController
     @conferencerooms = Conferenceroom.limit(10).includes(:schedules, :facility).order('created_at DESC')
   end
   
+  def show
+    @conferenceroom = Conferenceroom.find_by(id: params[:id])
+  end
+  
   private
     def conferenceroom_params
       params.require(:conferenceroom).permit(:people, :price, :remarks, :starttime, :endtime, :conferenceroomname)

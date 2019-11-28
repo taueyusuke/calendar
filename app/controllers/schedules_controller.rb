@@ -1,7 +1,6 @@
 class SchedulesController < ApplicationController
   def new
     @Schedule = Schedule.new
-    @conferenceroom = Conferenceroom.find_by(id: params[:conferenceroom_id])
   end
   
   def create

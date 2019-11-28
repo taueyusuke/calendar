@@ -32,7 +32,7 @@
             <td><%= conferenceroom.people %></td>
             <td><%= conferenceroom.price %></td>
             <td><%= conferenceroom.starttime %> ~ <%= conferenceroom.endtime %></td>
-            <td><%= link_to "スケジュール", new_conferenceroom_schedule_path(conferenceroom), class: "btn btn-primary" %></td>
+            <td><%= link_to "スケジュール", conferenceroom_path(conferenceroom), class: "btn btn-primary" %></td>
           </tr>
         <% end %>
       </tbody>
