@@ -5,10 +5,11 @@ class SchedulesController < ApplicationController
   
   def create
     @schedule = Schedule.new(schedule_params)
-    if @Schedule.save!
+    @schedule.user_id = current_user.id
+    if @schedule.save!
       flash[:success] = "予約を新規作成しました"
       redirect_to root_url
-    else
+    else 
       render 'new'
     end
   end
@@ -19,6 +20,6 @@ class SchedulesController < ApplicationController
   
   private
     def schedule_params
-      params.require(:schedule).permit(:starttime, :endtime, :title, :content).merge(user_id: current_user.id)
+      params.require(:schedule).permit(:starttime, :endtime, :title, :content).merge(conferenceroom_id: current_user.id)
     end
 end
