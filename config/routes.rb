@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   get '/conferencerooms/:id', to: 'conferencerooms#show', as: 'conferenceroom'
   
-  resources :conferencerooms, only: %i(new create index) do
+  resources :conferencerooms, only: %i(new create index show) do
   resources :users, only: %i(new create)
     resources :schedules, only: %i(new create)
   end

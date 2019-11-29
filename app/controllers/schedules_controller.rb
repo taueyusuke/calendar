@@ -1,16 +1,20 @@
 class SchedulesController < ApplicationController
   def new
-    @Schedule = Schedule.new
+    @schedule = Schedule.new
   end
   
   def create
-    @Schedule = Schedule.new(schedule_params)
+    @schedule = Schedule.new(schedule_params)
     if @Schedule.save!
       flash[:success] = "予約を新規作成しました"
       redirect_to root_url
     else
       render 'new'
     end
+  end
+  
+  def show
+    @schedule = Schedule.find(params[:id])
   end
   
   private
