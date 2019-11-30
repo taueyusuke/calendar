@@ -24,6 +24,29 @@ class ConferenceroomsController < ApplicationController
     @conferenceroom = Conferenceroom.find_by(id: params[:id])
   end
   
+  def edit
+    @conferenceroom = Conferenceroom.find_by(id: params[:id])
+  end
+  
+  def update
+    @conferenceroom = Conferenceroom.find_by(id: params[:id])
+    if @conferenceroom.update_attributes(conferenceroom_params)
+      redirect_to :root
+    else
+      render action: :edit
+    end
+  end
+  
+  def destroy
+    @conferenceroom = Conferenceroom.find_by(id: params[:id])
+    if @conferenceroom.destroy
+      flash[:notice] = "会議室が削除されました"
+    else
+      flash[:alert] = "会議室の削除に失敗しました"
+    end
+    redirect_to root_path
+  end
+  
   private
     def conferenceroom_params
       params.require(:conferenceroom).permit(:people, :price, :remarks, :starttime, :endtime, :conferenceroomname)

@@ -31,6 +31,7 @@
             <td><%= conferenceroom.people %></td>
             <td><%= conferenceroom.price %></td>
             <td><%= conferenceroom.starttime %> ~ <%= conferenceroom.endtime %></td>
+            <td><%= link_to "編集", edit_conferenceroom_path(conferenceroom), class: "btn btn-primary" %></td>
             <td><%= link_to "カレンダー", conferenceroom_path(conferenceroom), class: "btn btn-primary" %></td>
           </tr>
         <% end %>
