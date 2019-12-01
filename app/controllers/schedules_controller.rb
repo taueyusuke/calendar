@@ -22,6 +22,10 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.find_by(id: params[:id])
   end
   
+  def index
+    @schedule = Schedule.limit(10).includes(:conferenceroom, :user).order('created_at DESC')
+  end
+  
   def update
     @schedule = Schedule.find_by(id: params[:id])
     if @schedule.update_attributes(schedule_params)
