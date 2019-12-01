@@ -1,8 +1,14 @@
 <div class="container-hluid">
   <div class="row no-gutters">
     <div class="col-3 bg-primary ">
-      <h1>test</h1>
-      <h1>test</h1>
+      <h1>test1</h1>
+      <h1>test2</h1>
+      <div>
+        <% if current_user %>
+          <%= link_to "マイページ", user_path(current_user), class: "text-muted" %>
+        <% end %>
+      </div>
+      <h1>test4</h1>
     </div>
     <div class="col-9">
       <hr>
