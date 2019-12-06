@@ -14,3 +14,4 @@ Rails.application.routes.draw do
     resources :schedules, only: %i(new create edit destroy update destroy index)
   end
 end
+

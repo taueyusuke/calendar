@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     @schedule.user_id = current_user.id
-    if @schedule.save!
+    if @schedule.save
       flash[:success] = "予約を新規作成しました"
       redirect_to root_url
     else 
@@ -23,7 +23,7 @@ class SchedulesController < ApplicationController
   end
   
   def index
-    @schedule = Schedule.limit(10).includes(:conferenceroom, :user).order('created_at DESC')
+    @schedule = Schedule.all
   end
   
   def update

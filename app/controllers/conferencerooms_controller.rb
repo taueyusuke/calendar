@@ -17,11 +17,12 @@ class ConferenceroomsController < ApplicationController
   end
   
   def index
-    @conferencerooms = Conferenceroom.limit(10).includes(:schedules, :facility).order('created_at DESC')
+    @conferenceroom = Conferenceroom.all
   end
   
   def show
     @conferenceroom = Conferenceroom.find_by(id: params[:id])
+    @schedule = Schedule.all
   end
   
   def edit
