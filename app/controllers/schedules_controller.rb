@@ -23,7 +23,9 @@ class SchedulesController < ApplicationController
   end
   
   def index
-    @schedule = Schedule.all
+    if user_signed_in?
+      @schedule = Schedule.where(user_id: current_user)
+    end
   end
   
   def update

@@ -1,6 +1,6 @@
-json.array!(@schedule) do |event|
+json.array!(@schedule) do |schedule|
 
-  json.extract! schedule, :title
+  json.title schedule.title
 
   json.start schedule.starttime
 

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'conferencerooms#index'
-  
+  get '/shcedules', to: 'scheduls#index'
+  get '/conferencerooms', to: 'conferencerooms#show'
   get '/users/:id', to: 'users#show', as: 'user'
   
   get '/conferencerooms/:id', to: 'conferencerooms#show', as: 'conferenceroom'

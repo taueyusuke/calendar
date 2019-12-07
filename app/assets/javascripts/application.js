@@ -41,6 +41,7 @@ $(function () {
 
             $('#calendar').fullCalendar({
                 events: '/schedules.json',
+                events: '/conferencerooms.json',
                 titleFormat: 'YYYY年 M月',
                 dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
                 header: {
