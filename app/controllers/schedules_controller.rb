@@ -5,7 +5,8 @@ class SchedulesController < ApplicationController
   
   def create
     @schedule = Schedule.new(schedule_params)
-    @schedule.user_id = current_user.id
+    @schedule.conferenceroom_id = params[:conferenceroom_id]
+    
     if @schedule.save
       flash[:success] = "予約を新規作成しました"
       redirect_to root_url
@@ -24,7 +25,7 @@ class SchedulesController < ApplicationController
   
   def index
     if user_signed_in?
-      @schedule = Schedule.where(user_id: current_user)
+      @schedule = Schedule.where(user_id: current_user.id)
     end
   end
   
@@ -49,6 +50,6 @@ class SchedulesController < ApplicationController
   
   private
     def schedule_params
-      params.require(:schedule).permit(:starttime, :endtime, :title, :content).merge(conferenceroom_id: current_user.id)
+      params.require(:schedule).permit(:starttime, :endtime, :title, :content, :conferenceroom_id).merge(user_id: current_user.id)
     end
 end
