@@ -1,4 +1,6 @@
 class SchedulesController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @schedule = Schedule.new
   end
@@ -16,7 +18,7 @@ class SchedulesController < ApplicationController
   end
   
   def show
-    @schedule = Schedule.find(params[:id])
+    @schedule = Schedule.find_by(user_id:current_user.id)
   end
   
   def edit

@@ -1,28 +1,41 @@
-<%= form_with model: @schedule, url: { action: :create }, local: true do |f| %>
-
-  <div class="field">
-    
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    
+<div class="container-hluid">
+  <div class="row no-gutters">
+    <div class="col-3 bg-primary ">
+      <div>
+        <% if current_user %>
+          <%= link_to "マイページ", user_path(current_user), class: "text-muted" %>
+        <% end %>
+      </div>
+      <% if user_signed_in? %> 
+        <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "text-muted" %>
+      <% end %>
+    </div>
+    <div class="border col-9">
+      <h1>予定の新規作成</h1>
+      <br>
+      <%= form_with model: @schedule, url: { action: :create }, local: true do |f| %>
+        <div class="field">
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+        <div class="field">
+          <%= f.label :content %>
+          <%= f.text_field :content %>
+        </div>
+        <div class="field">
+          <%= f.label :starttime %>
+          <%= f.datetime_select :starttime %>
+        </div>
+        <div class="field">
+          <%= f.label :endtime %>
+          <%= f.datetime_select :endtime %>
+        </div>
+        <div class="actions">
+          <%= f.submit "新規作成", class: "btn btn-primary" %>
+        </div>
+    　<% end %>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_field :content %>
-  </div>
 
-  <div class="field">
-    <%= f.label :starttime %>
-    <%= f.datetime_select :starttime %>
-  </div>
-
-  <div class="field">
-    <%= f.label :endtime %>
-    <%= f.datetime_select :endtime %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規作成", class: "btn btn-primary" %>
-  </div>
-<% end %>
