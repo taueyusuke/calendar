@@ -1,0 +1,42 @@
+<div class="container-hluid">
+  <div class="row no-gutters">
+    <div class="col-3 bg-primary ">
+      <div>
+        <% if current_user %>
+          <%= link_to "マイページ", user_path(current_user), class: "text-muted" %>
+        <% end %>
+      </div>
+      <% if user_signed_in? %> 
+        <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "text-muted" %>
+      <% end %>
+    </div>
+    <div class="col-9">
+      <br>
+    <h1>マイページ</h1>
+    <br>
+ 
+    <div class="border col-5">
+      <br>
+      <div class="row">
+        <% if @user == current_user %>
+          <%= link_to "プロフィールを編集", edit_user_registration_path(@user), class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="row">
+        <div>
+          <%= @user.lastname %>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <%= @user.firstname %>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <%= @user.email %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
