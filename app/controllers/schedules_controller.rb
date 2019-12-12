@@ -18,7 +18,8 @@ class SchedulesController < ApplicationController
   end
   
   def show
-    @schedule = Schedule.find_by(user_id:current_user.id)
+    
+    @schedule = Schedule.where(user_id: current_user.id)
   end
   
   def edit

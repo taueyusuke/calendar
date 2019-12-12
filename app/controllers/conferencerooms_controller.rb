@@ -7,7 +7,7 @@ class ConferenceroomsController < ApplicationController
   
   def create
     facility = Facility.new
-    facility.save
+    facility.save!
     @conferenceroom = Conferenceroom.new(conferenceroom_params)
     @conferenceroom.facility_id = 1
     if @conferenceroom.save

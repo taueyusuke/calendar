@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'conferencerooms#index'
   get '/users/:id', to: 'users#show', as: 'user'
   get '/conferencerooms', to: 'conferencerooms#show'
-  
+  get '/schedules', to: 'schedules#show'
   resources :conferencerooms do
    resources :users, only: %i(new create)
    resources :schedules
