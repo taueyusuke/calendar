@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user'
   get '/conferencerooms', to: 'conferencerooms#show'
   get '/conferencerooms/:id', to: 'conferencerooms#show', as: 'conferenceroom'
-  resources :conferencerooms, only: %i(new create index show edit update destroy) do
+  resources :conferencerooms do
    resources :users, only: %i(new create)
-   resources :schedules, only: %i(new create edit destroy update destroy index show)
+   resources :schedules
   end
 end
 
