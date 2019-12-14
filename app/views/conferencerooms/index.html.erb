@@ -3,7 +3,7 @@
     <div class="col-3 bg-primary ">
       <div>
         <% if current_user %>
-          <%= link_to "マイカレンダー", conferenceroom_schedule_path(@conferenceroom,@conferenceroom), class: "text-muted" %>
+          <%= link_to "マイカレンダー", schedules_path, class: "text-muted" %>
         <% end %>
       </div>
       <div>
@@ -11,11 +11,16 @@
           <%= link_to "マイページ", user_path(current_user), class: "text-muted" %>
         <% end %>
       </div>
-      <% if user_signed_in? %> 
-        <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "text-muted" %>
-      <% end %>
+      <div>
+        <% if user_signed_in? %> 
+          <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "text-muted" %>
+        <% end %>
+      </div>
     </div>
     <div class="col-9">
+      <p><%= current_user.lastname %><%= current_user.firstname %></p>
+      <br>
+      <hr class="style">
       <br>
     <h1>会議室一覧</h1>
     <div>

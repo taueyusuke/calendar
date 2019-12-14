@@ -24,7 +24,7 @@ class ConferenceroomsController < ApplicationController
   
   def show
     @conferenceroom = Conferenceroom.find_by(id: params[:id])
-    @schedule = Schedule.all
+    @schedule = Schedule.where(conferenceroom_id: params[:id])
   end
   
   def edit

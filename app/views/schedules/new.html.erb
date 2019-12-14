@@ -3,37 +3,56 @@
     <div class="col-3 bg-primary ">
       <div>
         <% if current_user %>
+          <%= link_to "マイカレンダー", schedules_path, class: "text-muted" %>
+        <% end %>
+      </div>
+      <div>
+        <% if current_user %>
           <%= link_to "マイページ", user_path(current_user), class: "text-muted" %>
         <% end %>
       </div>
-      <% if user_signed_in? %> 
-        <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "text-muted" %>
-      <% end %>
+      <div>
+        <% if user_signed_in? %> 
+          <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "text-muted" %>
+        <% end %>
+      </div>
     </div>
     <div class="border col-9">
+      <p><%= current_user.lastname %><%= current_user.firstname %></p>
+      <hr class="style">
+      <br>
       <h1>予定の新規作成</h1>
       <br>
-      <%= form_with model: @schedule, url: { action: :create }, local: true do |f| %>
-        <div class="field">
-          <%= f.label :title %>
-          <%= f.text_field :title %>
-        </div>
-        <div class="field">
-          <%= f.label :content %>
-          <%= f.text_field :content %>
-        </div>
-        <div class="field">
-          <%= f.label :starttime %>
-          <%= f.datetime_select :starttime %>
-        </div>
-        <div class="field">
-          <%= f.label :endtime %>
-          <%= f.datetime_select :endtime %>
-        </div>
-        <div class="actions">
-          <%= f.submit "新規作成", class: "btn btn-primary" %>
-        </div>
-    　<% end %>
+      <div class="border col-5">
+        <%= form_with model: @schedule, url: { action: :create }, local: true do |f| %>
+          <div class="field">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+          </div>
+          <div class="field">
+            <%= f.label :content %>
+            <%= f.text_field :content %>
+          </div>
+          
+          <div class="input-group" data-target-input="nearest">
+            <%= f.text_field :starttime, id: "starttime", class: "form-control datepicker", data: { target: '#starttime'} %>
+            <div class="input-group-append" data-target="#starttime" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+          
+          <div class="input-group" data-target-input="nearest">
+            <%= f.text_field :endtime, id: "endtime", class: "form-control datepicker", data: { target: '#endtime'} %>
+            <div class="input-group-append" data-target="#endtime" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+          
+          <div class="actions">
+            <%= f.submit "新規作成", class: "btn btn-primary" %>
+          </div>
+      　<% end %>
+    　</div>
     </div>
   </div>
 </div>

@@ -3,6 +3,11 @@
     <div class="col-3 bg-primary ">
       <div>
         <% if current_user %>
+          <%= link_to "マイカレンダー", schedules_path, class: "text-muted" %>
+        <% end %>
+      </div>
+      <div>
+        <% if current_user %>
           <%= link_to "マイページ", user_path(current_user), class: "text-muted" %>
         <% end %>
       </div>
@@ -13,7 +18,8 @@
       </div>
     </div>
     <div class="col-9">
-      <br>
+      <p><%= current_user.lastname %><%= current_user.firstname %></p>
+    <hr class="style">  
     <h1>予約の編集</h1>
     <br>
     <div class="border col-5">

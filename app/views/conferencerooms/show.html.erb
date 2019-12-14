@@ -3,7 +3,7 @@
     <div class="col-3 bg-primary ">
       <div>
         <% if current_user %>
-          <%= link_to "マイカレンダー", conferenceroom_schedule_path(@conferenceroom,@conferenceroom), class: "text-muted" %>
+          <%= link_to "マイカレンダー", schedules_path, class: "text-muted" %>
         <% end %>
       </div>
       <div>
@@ -18,6 +18,10 @@
       </div>
     </div>
     <div class="col-9">
+      <p><%= current_user.lastname %><%= current_user.firstname %></p>
+      <br>
+      <hr class="style">
+      <br>
       <div>
         <%= @conferenceroom.conferenceroomname %>
       </div>
