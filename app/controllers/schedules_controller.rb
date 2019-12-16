@@ -18,7 +18,6 @@ class SchedulesController < ApplicationController
   end
   
   def show
-    
     @schedule = Schedule.where(user_id: current_user.id)
   end
   

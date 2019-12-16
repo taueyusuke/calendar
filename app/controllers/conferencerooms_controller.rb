@@ -24,8 +24,12 @@ class ConferenceroomsController < ApplicationController
   
   def show
     @conferenceroom = Conferenceroom.find_by(id: params[:id])
+    
     @schedule = Schedule.where(conferenceroom_id: params[:id])
+    
   end
+  
+  
   
   def edit
     @conferenceroom = Conferenceroom.find_by(id: params[:id])
@@ -52,7 +56,7 @@ class ConferenceroomsController < ApplicationController
   
   private
     def conferenceroom_params
-      params.require(:conferenceroom).permit(:people, :price, :remarks, :starttime, :endtime, :conferenceroomname)
+      params.require(:conferenceroom).permit(:people, :price, :remarks, :starttime, :endtime, :conferenceroomname, :id)
     end
 end
 

@@ -2,6 +2,9 @@
   <div class="row no-gutters">
     <div class="col-3 bg-primary ">
       <div>
+        <%= link_to "会議室一覧", root_path, class: "text-muted" %>
+      </div>
+      <div>
         <% if current_user %>
           <%= link_to "マイカレンダー", schedules_path, class: "text-muted" %>
         <% end %>
