@@ -1,20 +1,20 @@
 <div class="col-3 bg-primary ">
-  <div>
-    <%= link_to "会議室一覧", root_path, class: "text-muted" %>
+  <div class="menu1">
+    <%= link_to "会議室一覧", root_path, class: "text-dark" %>
   </div>
-  <div>
+  <div class="menu1">
     <% if current_user %>
-      <%= link_to "マイカレンダー", schedules_path, class: "text-muted" %>
+      <%= link_to "マイカレンダー", schedules_path, class: "text-dark" %>
     <% end %>
   </div>
-  <div>
+  <div class="menu1">
     <% if current_user %>
-      <%= link_to "マイページ", user_path(current_user), class: "text-muted" %>
+      <%= link_to "マイページ", user_path(current_user), class: "text-dark" %>
     <% end %>
   </div>
-  <div>
+  <div class="menu1">
     <% if user_signed_in? %> 
-      <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "text-muted" %>
+      <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "text-dark" %>
     <% end %>
   </div>
 </div>
