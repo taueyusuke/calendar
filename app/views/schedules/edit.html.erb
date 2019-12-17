@@ -4,29 +4,55 @@
     <div class="col-9">
       <div class="current"><%= current_user.lastname %> <%= current_user.firstname %></div>
       <hr class="style">  
-      <div class="edit-form">
+      <div class="edit-schedule">
         <h1>予約の編集</h1>
       </div>
       <br>
       <div class="border col-5 edit-form">
         <br>
-        <div class="row">
+        <div class="form-horizontal" role="form">
           <%= form_with model: @schedule, url: conferenceroom_schedule_path(@schedule), local: true do |f| %>
-            <%= f.label :starttime %>
-            <%= f.text_field :starttime, class: "form-control" %>
-            
-            <%= f.label :endtime %>
-            <%= f.text_field :endtime, class: "form-control" %>
-            
-            <%= f.label :title %>
-            <%= f.text_field :title, class: "form-control" %>
-            
-            <%= f.label :content %>
-            <%= f.text_field :content, class: "form-control" %>
-            
-            <div>
-              <%= link_to "削除", conferenceroom_schedule_path(@schedule), method: :delete, class: "btn btn-danger" %>
-              <%= f.submit "編集", class: "btn btn-primary" %>
+            <div class="col-sm-12">
+              <%= f.label :"タイトル" %>
+              <%= f.text_field :title, class: "form-control" %>
+            </div>
+            <br>
+            <div class="col-12">
+              <%= f.label :"開始時刻" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :starttime, id: "starttime", class: "form-control datepicker", data: { target: '#starttime'} %>
+                <div class="input-group-append" data-target="#starttime" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="col-12">
+              <%= f.label :"終了時刻" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :endtime, id: "endtime", class: "form-control datepicker", data: { target: '#endtime'} %>
+                <div class="input-group-append" data-target="#endtime" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="col-sm-12">
+              <%= f.label :"内容" %>
+              <%= f.text_area :content, class: "form-control",:size => "40x3" %>
+            </div>
+            <br>
+            <div class="edit-delete-btn">
+              <div class="form-inline">
+                <div class="form-group">
+                  <div class="conferenceroom-delete-btn">
+                    <%= link_to "削除", conferenceroom_schedule_path(@schedule), method: :delete, class: "btn btn-danger" %>
+                  </div>
+                <div class="form-group">
+                  <div class="conferenceroom-edit-btn">
+                    <%= f.submit "編集", class: "btn btn-primary" %>
+                  </div>
+              </div>
             </div>
           <% end %>
         </div>

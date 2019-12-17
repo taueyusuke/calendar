@@ -5,38 +5,55 @@
       <div class="current"><%= current_user.lastname %> <%= current_user.firstname %></div>
       <hr class="style">
       <br>
-      <h1>予定の新規作成</h1>
+      <div class="edit-schedule">
+        <h1>予定の新規作成</h1>
+      </div>
       <br>
-      <div class="border col-5">
-        <%= form_with model: @schedule, url: { action: :create }, local: true do |f| %>
-          <div class="field">
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-          </div>
-          <div class="field">
-            <%= f.label :content %>
-            <%= f.text_field :content %>
-          </div>
-          
-          <div class="input-group" data-target-input="nearest">
-            <%= f.text_field :starttime, id: "starttime", class: "form-control datepicker", data: { target: '#starttime'} %>
-            <div class="input-group-append" data-target="#starttime" data-toggle="datetimepicker">
-              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+      
+      <div class="border col-5 edit-form">
+        <br>
+        <div class="form-horizontal" role="form">
+          <%= form_with model: @schedule, url: { action: :create }, local: true do |f| %>
+            <div class="col-sm-12">
+              <%= f.label :"タイトル" %>
+              <%= f.text_field :title, class: "form-control" %>
             </div>
-          </div>
-          
-          <div class="input-group" data-target-input="nearest">
-            <%= f.text_field :endtime, id: "endtime", class: "form-control datepicker", data: { target: '#endtime'} %>
-            <div class="input-group-append" data-target="#endtime" data-toggle="datetimepicker">
-              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            <br>
+            <div class="col-12">
+              <%= f.label :"開始時刻" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :starttime, id: "starttime", class: "form-control datepicker", data: { target: '#starttime'} %>
+                <div class="input-group-append" data-target="#starttime" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div class="actions">
-            <%= f.submit "新規作成", class: "btn btn-primary" %>
-          </div>
-      　<% end %>
-    　</div>
+            <br>
+            <div class="col-12">
+              <%= f.label :"終了時刻" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :endtime, id: "endtime", class: "form-control datepicker", data: { target: '#endtime'} %>
+                <div class="input-group-append" data-target="#endtime" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="col-sm-12">
+              <%= f.label :"内容" %>
+              <%= f.text_area :content, class: "form-control",:size => "40x3" %>
+            </div>
+            <br>
+            <div class="edit-delete-btn">
+              <div class="form-group">
+                <div class="schedule-new-btn">
+                  <%= f.submit "新規作成", class: "btn btn-primary" %>
+                </div>
+            </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

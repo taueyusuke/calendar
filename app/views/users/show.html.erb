@@ -5,29 +5,29 @@
       <div class="current"><%= current_user.lastname %> <%= current_user.firstname %></div>
       <hr class="style">  
         <br>
-      <h1>マイページ</h1>
-      <br>
-   
-      <div class="border col-5">
-        <br>
-        <div class="row">
-          <% if @user == current_user %>
-            <%= link_to "プロフィールを編集", edit_user_registration_path(@user), class: "btn btn-primary" %>
-          <% end %>
+        <div class="col-9 my-page">
+          <h1>マイページ</h1>
         </div>
-        <div class="row">
-          <div>
-            <%= @user.lastname %>
+        <div class="border col-5 edit-form">
+          <div class="form-inline">
+            <div class="form-group">
+              <div class="user-last">
+                <%= @user.lastname %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="user-first">
+                <%= @user.firstname %>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div>
-            <%= @user.firstname %>
-          </div>
-        </div>
-        <div class="row">
-          <div>
+          <div class="user-email">
             <%= @user.email %>
+          </div>
+          <div class="col edit-profile-btn">
+            <% if @user == current_user %>
+              <%= link_to "プロフィールを編集", edit_user_registration_path(@user), class: "btn btn-primary" %>
+            <% end %>
           </div>
         </div>
       </div>
