@@ -1,49 +1,40 @@
 <div class="container-hluid">
   <div class="row no-gutters">
-    <div class="col-3 bg-primary ">
-      <div>
-        <% if current_user %>
-          <%= link_to "マイカレンダー", conferenceroom_schedule_path(@conferenceroom,@conferenceroom), class: "text-muted" %>
-        <% end %>
-      </div>
-      <div>
-        <% if current_user %>
-          <%= link_to "マイページ", user_path(current_user), class: "text-muted" %>
-        <% end %>
-      </div>
-      <div>
-        <% if user_signed_in? %> 
-          <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "text-muted" %>
-        <% end %>
-      </div>
-    </div>
+    <%= render 'partial/menu' %>
     <div class="col-9">
-      <div>
-        <%= @conferenceroom.conferenceroomname %>
+      <div class="current"><%= current_user.lastname %> <%= current_user.firstname %></div>
+      <br>
+      <hr class="style">
+      <br>
+      <div class="row no-gutters">
+        <div class="col-9 edit-form">
+        　<h1><%= @conferenceroom.conferenceroomname %></h1>
+        </div>
+        <div class="col new-schedule-btn">
+          <%= link_to "予定の新規登録", new_conferenceroom_schedule_path(@conferenceroom), class: "btn btn-primary" %>
+        </div>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">タイトル</th>
+              <th scope="col">内容</th>
+              <th scope="col">使用可能時間</th>
+              <th scope="col"> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @schedule.each do |schedule| %>
+              <tr>
+                <td><%= schedule.title %></td>
+                <td><%= schedule.content %></td>
+                <td><%= schedule.starttime %> ~ <%= schedule.endtime %></td>
+                <td><%= link_to "編集", edit_conferenceroom_schedule_path(@conferenceroom,schedule), class: "btn btn-primary" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
-      <div>
-        <%= link_to "新規登録", new_conferenceroom_schedule_path(@conferenceroom), class: "btn btn-primary" %>
-      </div>
-      <table class="table table-sm">
-      <thead>
-        <tr>
-          <th scope="col">タイトル</th>
-          <th scope="col">内容</th>
-          <th scope="col">使用可能時間</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @schedule.each do |schedule| %>
-          <tr>
-            <td><%= schedule.title %></td>
-            <td><%= schedule.content %></td>
-            <td><%= schedule.starttime %> ~ <%= schedule.endtime %></td>
-            <td><%= link_to "編集", edit_conferenceroom_schedule_path(@conferenceroom,schedule), class: "btn btn-primary" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <div id="calendar"></div>
+      <div id="calendar"></div>
     </div>
   </div>
 </div>

@@ -1,18 +1,16 @@
 <div class="container-hluid">
   <div class="row no-gutters">
-    <div class="col-3 bg-primary ">
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-    </div>
+    <%= render 'partial/menu' %>
     <div class="col-9">
-      <hr>
+      <div class="current"><%= current_user.lastname %> <%= current_user.firstname %></div>
+      <hr class="style">
       <br>
-      <h1>マイカレンダー</h1>
+      <div class="my-schedule">
+        <h1>マイカレンダー</h1>
+      </div>
       <br>
       <div class="row">
-        <div id="calendars"></div>
-        
+        <div id="calendars" class="calendars"></div>
       </div>
     </div>
   </div>

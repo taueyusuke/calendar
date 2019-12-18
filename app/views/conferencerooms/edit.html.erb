@@ -1,43 +1,78 @@
 <div class="container-hluid">
   <div class="row no-gutters">
-    <div class="col-3 bg-primary ">
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-    </div>
+    <%= render 'partial/menu' %>
     <div class="col-9">
-      
+      <div class="current"><%= current_user.lastname %> <%= current_user.firstname %></div>
       <br>
-    <h1>会議室の新規登録</h1>
-    <br>
- 
-    <div class="border col-5">
+      <hr class="style">
       <br>
-      <div class="row">
-        <%= form_with model: @conferenceroom, url: conferenceroom_path(@conferenceroom), local: true do |f| %>
-          <%= f.label :conferenceroomname %>
-          <%= f.text_field :conferenceroomname, class: "form-control" %>
-          
-          <%= f.label :people %>
-          <%= f.text_field :people, class: "form-control" %>
-          
-          <%= f.label :price %>
-          <%= f.text_field :price, class: "form-control" %>
-          
-          <%= f.label :starttime %>
-          <%= f.text_field :starttime, class: "form-control" %>
-          
-          <%= f.label :endtime %>
-          <%= f.text_field :endtime, class: "form-control" %>
-          
-          <%= f.label :remarks %>
-          <%= f.text_field :remarks, class: "form-control" %>
-          
-          <div>
-            <%= link_to "削除", conferenceroom_path(@conferenceroom), method: :delete, class: "btn btn-danger" %>
-            <%= f.submit "編集", class: "btn btn-primary" %>
-          </div>
-        <% end %>
+      <div class="edit-form">
+        <h1>会議室の編集</h1>
+      </div>
+      <br>
+      <div class="border col-5 edit-form">
+        <br>
+        <div class="form-horizontal" role="form">
+          <%= form_with model: @conferenceroom, local: true do |f| %>
+            <div class="col-sm-12">
+              <%= f.label :"会議室名" %>
+              <%= f.text_field :conferenceroomname, class: "form-control" %>
+            </div>
+            <br>
+            <div class="form-inline">
+              <div class="form-group">
+                <div class="col-sm-5">
+                  <%= f.label :"利用金額" %>
+                  <%= f.text_field :price, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <%= f.label :"人数" %>
+                  <%= f.text_field :people, class: "form-control" %>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="col-12">
+              <%= f.label :"開始時刻" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :starttime, id: "starttime", class: "form-control datepicker", data: { target: '#starttime'} %>
+                <div class="input-group-append" data-target="#starttime" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="col-12">
+              <%= f.label :"終了時刻" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :endtime, id: "endtime", class: "form-control datepicker", data: { target: '#endtime'} %>
+                <div class="input-group-append" data-target="#endtime" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="col-sm-12">
+              <%= f.label :"備考" %>
+              <%= f.text_area :remarks, class: "form-control",:size => "40x3" %>
+            </div>
+            <br>
+            <div class="edit-delete-btn">
+              <div class="form-inline">
+                <div class="form-group">
+                  <div class="conferenceroom-delete-btn">
+                    <%= link_to "削除", conferenceroom_path(@conferenceroom.id), method: :delete, class: "btn btn-danger" %>
+                  </div>
+                <div class="form-group">
+                  <div class="conferenceroom-edit-btn">
+                    <%= f.submit "編集", class: "btn btn-primary" %>
+                  </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
