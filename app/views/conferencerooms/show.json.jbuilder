@@ -1,4 +1,4 @@
-json.array!(@schedules) do |schedule|
+json.array!(@schedule) do |schedule|
 
   json.title schedule.title
 
