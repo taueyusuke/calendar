@@ -15,7 +15,7 @@ class ConferenceroomsController < ApplicationController
       flash[:success] = "会議室を登録しました"
       redirect_to root_url
     else
-      render 'new'
+      redirect_to new_conferenceroom_path
     end
   end
   
