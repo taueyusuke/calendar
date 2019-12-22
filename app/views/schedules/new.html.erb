@@ -20,24 +20,42 @@
             </div>
             <br>
             <div class="col-12">
-              <%= f.label :"開始時刻" %>
-              <div class="input-group" data-target-input="nearest">
-                <%= f.text_field :starttime, id: "starttime", class: "form-control datepicker", data: { target: '#starttime'} %>
-                <div class="input-group-append" data-target="#starttime" data-toggle="datetimepicker">
-                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              
+              <div class="row">
+                <div class="col-sm-6">
+                  <%= f.label :"開始時刻" %>
+                  <%= f.text_field :starttime, class: "form-control datetimepicker-input", id: "starttime", data: {toggle: "datetimepicker", target: "#starttime"} %>
                 </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker5').datetimepicker();
+                    });
+                </script>
+              </div>
+            </div>
+              
+              
+            
+            <br>
+            <div class="col-12">
+              
+              <div class="row">
+                <div class="col-sm-6">
+                  <%= f.label :"終了時刻" %>
+                  <%= f.text_field :endtime, class: "form-control datetimepicker-input", id: "endtime", data: {toggle: "datetimepicker", target: "#endtime"} %>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker5').datetimepicker();
+                    });
+                </script>
               </div>
             </div>
             <br>
-            <div class="col-12">
-              <%= f.label :"終了時刻" %>
-              <div class="input-group" data-target-input="nearest">
-                <%= f.text_field :endtime, id: "endtime", class: "form-control datepicker", data: { target: '#endtime'} %>
-                <div class="input-group-append" data-target="#endtime" data-toggle="datetimepicker">
-                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                </div>
-              </div>
-            </div>
+            
+            
+            
+            
             <br>
             <div class="col-sm-12">
               <%= f.label :"内容" %>
