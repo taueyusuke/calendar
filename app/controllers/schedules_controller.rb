@@ -13,7 +13,7 @@ class SchedulesController < ApplicationController
       flash[:success] = "予約を新規作成しました"
       redirect_to root_url
     else 
-      render 'new'
+      redirect_to new_conferenceroom_schedule_path
     end
   end
   
@@ -26,9 +26,7 @@ class SchedulesController < ApplicationController
   end
   
   def index
-    if user_signed_in?
-      @schedule = Schedule.where(user_id: current_user.id)
-    end
+    
   end
   
   def update

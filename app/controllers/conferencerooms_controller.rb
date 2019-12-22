@@ -1,6 +1,7 @@
 class ConferenceroomsController < ApplicationController
   before_action :authenticate_user!
   
+  
   def new
     @conferenceroom = Conferenceroom.new
   end
@@ -24,8 +25,7 @@ class ConferenceroomsController < ApplicationController
   
   def show
     @conferenceroom = Conferenceroom.find_by(id: params[:id])
-    @schedule = Schedule.where(conferenceroom_id: params[:id])
-    byebug
+    @schedule = Schedule.where(conferenceroom_id: @conferenceroom.id)
   end
   
   
@@ -55,7 +55,9 @@ class ConferenceroomsController < ApplicationController
   
   private
     def conferenceroom_params
-      params.require(:conferenceroom).permit(:people, :price, :remarks, :starttime, :endtime, :conferenceroomname, :id)
+      params.require(:conferenceroom).permit(:people, :price, :remarks, :starttime, :endtime, :conferenceroomname)
     end
+    
+    
 end
 

@@ -65,6 +65,7 @@ $(function () {
                 timeFormat: "HH:mm",
                 eventColor: '#63ceef',
                 eventTextColor: '#000000',
+            
             });
         }
     });
